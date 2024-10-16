@@ -2,7 +2,11 @@ package com.example.chicagoattractions;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 public class MainActivity extends AppCompatActivity {
@@ -20,5 +24,17 @@ public class MainActivity extends AppCompatActivity {
         list=findViewById(R.id.list);
         list.setEmptyView((findViewById(R.id.empty)));
         list.setAdapter(gust);
+        list.setOnItemClickListener(new ClickEvent());
+    }
+    public class ClickEvent implements AdapterView.OnItemClickListener{
+
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            switch(position){
+                case 0:
+                    Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.saic.edu/"));
+                    startActivity(i);
+            }
+        }
     }
 }
